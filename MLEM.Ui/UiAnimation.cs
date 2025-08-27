@@ -31,22 +31,30 @@ namespace MLEM.Ui {
         /// The current time that this ui animation has been playing for, out of the <see cref="TotalTime"/>.
         /// </summary>
         public TimeSpan CurrentTime { get; private set; }
+        /// <summary>
+        /// Whether this anmiation should repeat when finished
+        /// </summary>
+        public bool Repeat { get; private set; }
 
         /// <summary>
         /// Creates a new ui animation with the given settings.
         /// </summary>
         /// <param name="seconds">The amount of seconds that this ui animation should play for.</param>
         /// <param name="function">The <see cref="AnimationFunction"/> that is invoked every <see cref="Update"/>.</param>
-        public UiAnimation(double seconds, AnimationFunction function) : this(TimeSpan.FromSeconds(seconds), function) {}
+        /// <param name="repeat">Whether this anmiation should repeat when finished.</param>
+        public UiAnimation(double seconds, AnimationFunction function, bool repeat = false) : this(TimeSpan.FromSeconds(seconds), function, repeat) { }
 
         /// <summary>
         /// Creates a new ui animation with the given settings.
         /// </summary>
         /// <param name="totalTime">The <see cref="TotalTime"/> that this ui animation should play for.</param>
         /// <param name="function">The <see cref="AnimationFunction"/> that is invoked every <see cref="Update"/>.</param>
-        public UiAnimation(TimeSpan totalTime, AnimationFunction function) {
+        /// <param name="repeat">Whether this anmiation should repeat when finished.</param>
+        public UiAnimation(TimeSpan totalTime, AnimationFunction function, bool repeat = false)
+        {
             this.TotalTime = totalTime;
             this.Function = function;
+            this.Repeat = repeat;
         }
 
         /// <summary>

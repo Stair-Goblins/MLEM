@@ -841,7 +841,9 @@ namespace MLEM.Ui.Elements {
                 var anim = this.PlayingAnimations[i];
                 if (anim.Update(this, time)) {
                     anim.OnFinished(this);
-                    this.PlayingAnimations.RemoveAt(i);
+                    // Keep repeating animations to play them again
+                    if (!anim.Repeat)
+                        this.PlayingAnimations.RemoveAt(i);
                 }
             }
 
